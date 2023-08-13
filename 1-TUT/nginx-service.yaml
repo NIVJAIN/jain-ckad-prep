@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: "2023-08-13T14:16:52Z"
+  labels:
+    app: nginx-deployment
+  name: nginx-service
+  namespace: k8s
+  resourceVersion: "27736"
+  uid: 612dc279-bfa8-467a-bba2-29644c7e4f46
+spec:
+  clusterIP: 10.100.46.156
+  clusterIPs:
+  - 10.100.46.156
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 4444
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx-deployment
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

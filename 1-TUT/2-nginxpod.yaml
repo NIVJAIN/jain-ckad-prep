@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginxpod
+spec:
+  containers:
+  - name: nginxpod
+    # image: busybox
+    image: nginx:alpine
+    # command: ["/bin/sh", "-c"]
+    command: ["/bin/sh", "-c"]
+    args:
+    - echo "This is the first command";
+      sleep 1;
+      echo "This is the second command";
+      hostname;
+      while sleep 5; do hostname; done;
+    # while true; do hostname sleep 5; done;
+
+ 

@@ -1,0 +1,29 @@
+
+apiVersion: v1
+kind: Pod 
+metadata:
+  labels:
+    run: pod1
+    my-label: test
+  name: pod1
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: htmldir
+      mountPath: /usr/share/nginx/html
+  initContainers:
+  - name: init-install
+    image: busybox
+    # command: ['/bin/sh', '-c'] # some how not working
+    # command: ['wget'] # also not working, not sure, but 2-nginxpod.yaml same busybox image its working
+    args: ['wget' ,'-o', "/work-dir/index.html", "http://duckademy.com"]
+    volumeMounts:
+    - name: htmldir
+      mountPath: "/work-dir"
+  volumes:
+  - name: htmldir
+    emptyDir: {}
